@@ -1,6 +1,7 @@
 import React from 'react';
 import Tugas9 from './Tugas-9/tugas9.js'
 import Tugas10 from './Tugas-10/tugas10.js'
+import Tugas11 from './Tugas-11/tugas11.js'
 import './App.css';
 
 // Font bisa diubah di index.css tapi tidak dilakukan
@@ -9,6 +10,7 @@ function App() {
     <div>
       <Tugas10/>
       <Tugas9/>
+      <Tugas11/>
     </div>
   );
 }
