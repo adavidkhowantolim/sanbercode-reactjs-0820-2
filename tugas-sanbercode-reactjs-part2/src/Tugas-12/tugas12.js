@@ -17,80 +17,102 @@ class Tugas12 extends Component{
       namaBuah : dataHargaBuah.map(({nama})=>nama), 
       hargaBuah : dataHargaBuah.map(({harga})=>harga),
       beratBuah : dataHargaBuah.map(({berat})=>berat),
-      inputNamaBuahEdit : "",
-      inputHargaBuahEdit : "",
-      inputBeratBuahEdit : "",
-      inputIndeksBuahDelete : 0,
+      inputNamaBuah : "",
+      inputHargaBuah : "",
+      inputBeratBuah : "",
+      editStatus: false,
+      editingIndex: 0
     }
 
     this.handleEditSubmit = this.handleEditSubmit.bind(this);
     this.handleDeleteSubmit = this.handleDeleteSubmit.bind(this);
-    this.handleEditChange = this.handleEditChange.bind(this);
-    this.handleDeleteChange = this.handleDeleteChange.bind(this);
-
-    this.openDeleteForm = this.openDeleteForm.bind(this);
-    this.closeDeleteForm = this.closeDeleteForm.bind(this);
-    this.openEditForm = this.openEditForm.bind(this);
-    this.closeEditForm = this.closeEditForm.bind(this);
   }
 
-  openDeleteForm(){
-    document.getElementById("deleteForm").style.display = "block";
-    document.getElementById("buttonCloseDelete").style.display = "block";
-    document.getElementById("buttonOpenDelete").style.display = "none";
-  }
-
-  closeDeleteForm(){
-    document.getElementById("deleteForm").style.display = "none";
-    document.getElementById("buttonCloseDelete").style.display = "none";
-    document.getElementById("buttonOpenDelete").style.display = "block";
-  }
-
-  openEditForm(){
-    document.getElementById("editForm").style.display = "block";
-    document.getElementById("buttonCloseEdit").style.display = "block";
-    document.getElementById("buttonOpenEdit").style.display = "none";
-  }
-
-  closeEditForm(){
-    document.getElementById("editForm").style.display = "none";
-    document.getElementById("buttonCloseEdit").style.display = "none";
-    document.getElementById("buttonOpenEdit").style.display = "block";
-  }
-
-  handleEditChange(stateName, event){
+  // Untuk memunculkan form editing
+  openEditForm = (event) => {
+    let idx = event.target.value;
     this.setState({
-      [stateName] : event.target.value
+      inputNamaBuah : this.state.namaBuah[idx],
+      inputHargaBuah : this.state.hargaBuah[idx],
+      inputBeratBuah : this.state.beratBuah[idx],
+      editStatus: true,
+      editingIndex: idx
+    })
+  }
+
+  // Untuk menghilangkan form editing
+  closeEditForm = () => {
+    this.setState({
+      inputNamaBuah : "",
+      inputHargaBuah : "",
+      inputBeratBuah : "",
+      editStatus: false,
+      editingIndex: 0
+    })
+  }
+
+  // onChange input nama buah
+  handleEditChangeNama = (event) => {
+    var value= event.target.value;
+    this.setState({inputNamaBuah: value});
+  }
+  
+  // onChange input harga buah
+  handleEditChangeHarga = (event) => {
+    var value= event.target.value;
+    this.setState({inputHargaBuah: value});
+  }
+
+  // onChange input berat buah
+  handleEditChangeBerat = (event) => {
+    var value= event.target.value;
+    this.setState({inputBeratBuah: value});
+  }
+
+  // ketika button submit form ditekan
+  handleEditSubmit(event){
+    event.preventDefault();
+    var idx = this.state.editingIndex;
+    let newNamaBuah = this.state.namaBuah;
+    let newHargaBuah = this.state.hargaBuah;
+    let newBeratBuah = this.state.beratBuah;
+    newNamaBuah.splice(idx, 1, this.state.inputNamaBuah);
+    newHargaBuah.splice(idx, 1, this.state.inputHargaBuah);
+    newBeratBuah.splice(idx, 1, this.state.inputBeratBuah);
+    this.setState({
+      namaBuah: newNamaBuah,
+      hargaBuah: newHargaBuah,
+      beratBuah: newBeratBuah,
+      inputNamaBuah: "",
+      inputHargaBuah: "",
+      inputBeratBuah: "",
+      editStatus: false,
+      editingIndex: 0
     });
   }
 
-  handleEditSubmit(event){
-    event.preventDefault();
-    let name = this.state.namaBuah;
-    name.splice(this.state.inputIndeksBuahDelete, 1);
-    this.setState({
-      namaBuah: name,
-      inputIndeksBuahDelete: ""
-    })
-  }
-
-  handleDeleteChange(event){
-    this.setState({inputIndeksBuahDelete: event.target.value});
-  }
-
+  // ketika button delete ditekan
   handleDeleteSubmit(event){
-    event.preventDefault();
-    let name = this.state.namaBuah;
-    name.splice(this.state.inputIndeksBuahDelete, 1);
+    var idx = event.target.value;
+    let newNamaBuah = this.state.namaBuah;
+    let newHargaBuah = this.state.hargaBuah;
+    let newBeratBuah = this.state.beratBuah;
+    newNamaBuah.splice(idx, 1);
+    newHargaBuah.splice(idx, 1);
+    newBeratBuah.splice(idx, 1);
     this.setState({
-      namaBuah: name,
-      inputIndeksBuahDelete: ""
-    })
+      namaBuah: newNamaBuah,
+      hargaBuah: newHargaBuah,
+      beratBuah: newBeratBuah,
+      editStatus: false,
+      editingIndex: 0
+    });
   }
 
+  // render component
   render(){
     return(
-      <>
+      <div style={{width: "70vw", margin: "0 auto"}}>
         {/* Table */}
         <h1>Tabel Harga Buah</h1>
         <table className="table">
@@ -99,58 +121,53 @@ class Tugas12 extends Component{
               <th className="th">Nama</th>
               <th className="th">Harga</th>
               <th className="th">Berat</th>
+              <th className="th">Aksi</th>
             </tr>
           </thead>
           <tbody>
               {
                 this.state.namaBuah.map((val, index)=>{
                   return(                    
-                    <tr>
+                    <tr key={index}>
                       <td className="td">{val}</td>
                       <td className="td">{this.state.hargaBuah[index]}</td>
                       <td className="td">{this.state.beratBuah[index]/1000} kg</td>
+                      <td className="kolom_aksi">
+                        <button value={index} onClick={this.handleDeleteSubmit}>Delete</button>
+                        {
+                          this.state.editStatus ?
+                            <button value={index} onClick={this.closeEditForm}>Close Editing Form</button>
+                          : <button value={index} onClick={this.openEditForm}>Open Editing Form</button>
+                        }
+                      </td>
                     </tr>
                   )
                 })}
           </tbody>
         </table>
-        {/* Edit Form */}
-        <button className="button_open" onClick={this.openEditForm} id="buttonOpenEdit">Open Edit Form</button>
-        <button className="button_close" onClick={this.closeEditForm} id="buttonCloseEdit">Close Edit Form</button>
-        <form className="form_edit" onSubmit={this.handleEditSubmit} id="editForm">
-          <table>
-            <tr>
-              <label>Masukkan nama buah yang ingin ditambah:  </label>
-              <input name="namaBuah" type="text" value={this.state.inputNamaBuahEdit} onChange={this.handleEditChange.bind(this, "namaBuah")}></input>
-            </tr>
-            <tr>
-              <label>Masukkan harga buah yang ingin ditambah: </label>
-              <input name="hargaBuah" type="text" value={this.state.inputHargaBuahEdit} onChange={this.handleEditChange.bind(this, "hargaBuah")}></input>
-            </tr>
-            <tr>
-              <label>Masukkan berat buah yang ingin ditambah: </label>
-              <input name="beratBuah" type="text" value={this.state.inputBeratBuahEdit} onChange={this.handleEditChange.bind(this, "beratBuah")}></input>
-            </tr>
-            <tr>
-              <input type="submit"></input>
-            </tr>            
-          </table>
-        </form>
-        {/* Delete Form */}
-        <button className="button_open" onClick={this.openDeleteForm} id="buttonOpenDelete">Open Delete Form</button>
-        <button className="button_close" onClick={this.closeDeleteForm} id="buttonCloseDelete">Close Delete Form</button>
-        <form className="form_delete" onSubmit={this.handleDeleteSubmit} id="deleteForm">
-          <table>
-            <tr>
-              <label>Masukkan indeks yang ingin dihapus: </label>
-              <input type="text" value={this.state.inputIndeksBuahDelete} onChange={this.handleDeleteChange}></input>
-            </tr>
-            <tr>
-              <input type="submit"></input>
-            </tr>            
-          </table>
-        </form>
-      </>
+        {/* Form editing */}
+        { this.state.editStatus && (
+          <form className="form_edit" onSubmit={this.handleEditSubmit} id="editForm">
+            <table>
+              <tr>
+                <label>Masukkan nama buah yang ingin diubah:  </label>
+                <input type="text" value={this.state.inputNamaBuah} onChange={this.handleEditChangeNama}></input>
+              </tr>
+              <tr>
+                <label>Masukkan harga buah yang ingin diubah: </label>
+                <input type="text" value={this.state.inputHargaBuah} onChange={this.handleEditChangeHarga}></input>
+              </tr>
+              <tr>
+                <label>Masukkan berat buah yang ingin diubah: </label>
+                <input type="text" value={this.state.inputBeratBuah} onChange={this.handleEditChangeBerat}></input>
+              </tr>
+              <tr>
+                <input type="submit"></input>
+              </tr>            
+            </table>
+          </form>
+        )}
+      </div>
     )
   }
 }

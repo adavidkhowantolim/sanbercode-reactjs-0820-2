@@ -11,30 +11,22 @@ h1 {
   border: 1px solid white;
   background-color: coral;
   /* color: coral; */
-  width: 100px;
+  width: 10vw;
 } 
 .th{
   border: 1px solid white;
   background-color: lightgray;
   font-weight: bold;
 }
-
-.button_open {
+.kolom_aksi {
+  width: 15vw;
+  border: 1px solid white;
+  background-color: coral;
+  text-align: center;
+}
+.form_edit{
   display: block;
-  margin-bottom: 10px;
-  margin-top: 20px;
 }
-
-.button_close {
-  display: none;
-  margin-bottom: 10px;
-  margin-top: 20px;
-}
-
-.form_delete {
-  display: none;
-}
-
 label {
   margin-right: 6px;
 }
