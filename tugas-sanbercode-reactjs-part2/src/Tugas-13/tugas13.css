@@ -1,0 +1,41 @@
+h1 {
+  text-align: center;
+}
+
+div {
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.table{
+  border-collapse: collapse;
+  border: 2px solid black;
+  width: 100%;
+}
+.td {
+  border: 1px solid white;
+  background-color: coral;
+  /* color: coral; */
+  width: 10vw;
+} 
+.th{
+  border: 1px solid white;
+  background-color: lightgray;
+  font-weight: bold;
+}
+.kolom_aksi {
+  width: 15vw;
+  border: 1px solid white;
+  background-color: coral;
+  text-align: center;
+}
+.form_edit{
+  display: block;
+  text-align: center;
+}
+label {
+  margin-right: 6px;
+}
+.table_form{
+  margin: 0 auto
+}
