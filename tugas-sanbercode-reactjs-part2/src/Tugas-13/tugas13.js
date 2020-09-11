@@ -105,7 +105,7 @@ const Tugas13 = () => {
 
   // render component
   return(
-    <div>
+    <div style={{width: "70%", margin: "0 auto"}}>
       {/* Table */}
       <h1>Tabel Harga Buah</h1>
       <table className="table">

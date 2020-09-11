@@ -9,7 +9,6 @@ const Tugas14 = () =>{
     <FruitProvider>
       <div style={{width: "70%", margin: "0 auto"}}>
         <FruitTable/>
-
         <FruitForm/>
       </div>
     </FruitProvider>

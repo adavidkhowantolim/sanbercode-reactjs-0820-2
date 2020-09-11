@@ -5,12 +5,12 @@ import "./tugas9.css";
 class Tugas9 extends React.Component {
   render(){
     return (
-      <div>
-        <h1>Form Pembelian Buah</h1>
+      <div className="div9">
+        <h1 className="h1">Form Pembelian Buah</h1>
         <form>
-          <table>
+          <table className="table9">
             <tr>
-              <td width = "45%"><label class="bold" for="nama">Nama Pelanggan</label></td>
+              <td className="td9a"><label class="bold" for="nama">Nama Pelanggan</label></td>
               <td><input type="text" id="nama" name="nama"></input></td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@ class Tugas9 extends React.Component {
               </td>
             </tr>
           </table>
-          <button type="submit" value="kirim">Kirim</button>
+          <button className="button" type="submit" value="kirim">Kirim</button>
         </form>
       </div>
     );

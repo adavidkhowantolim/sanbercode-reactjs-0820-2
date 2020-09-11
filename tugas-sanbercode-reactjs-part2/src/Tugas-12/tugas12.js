@@ -150,15 +150,15 @@ class Tugas12 extends Component{
           <form className="form_edit" onSubmit={this.handleEditSubmit} id="editForm">
             <table>
               <tr>
-                <label>Masukkan nama buah yang ingin diubah:  </label>
+                <label className="label">Masukkan nama buah yang ingin diubah:  </label>
                 <input type="text" value={this.state.inputNamaBuah} onChange={this.handleEditChangeNama}></input>
               </tr>
               <tr>
-                <label>Masukkan harga buah yang ingin diubah: </label>
+                <label className="label">Masukkan harga buah yang ingin diubah: </label>
                 <input type="text" value={this.state.inputHargaBuah} onChange={this.handleEditChangeHarga}></input>
               </tr>
               <tr>
-                <label>Masukkan berat buah yang ingin diubah: </label>
+                <label className="label">Masukkan berat buah yang ingin diubah: </label>
                 <input type="text" value={this.state.inputBeratBuah} onChange={this.handleEditChangeBerat}></input>
               </tr>
               <tr>

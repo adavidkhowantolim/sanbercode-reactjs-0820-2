@@ -68,15 +68,15 @@ const FruitForm = () =>{
     <form className="form_edit" onSubmit={handleSubmit} id="editForm">
       <table className="table_form">
         <tr>
-          <td><label>Nama:  </label></td>
+          <td><label className="label">Nama:  </label></td>
           <td><input type="text" name="name" value={inputBuah.name} onChange={handleEditChange}></input></td>
         </tr>
         <tr>
-          <td><label>Harga: </label></td>
+          <td><label className="label">Harga: </label></td>
           <td><input type="text" name="price" value={inputBuah.price} onChange={handleEditChange}></input></td>
         </tr>
         <tr>
-          <td><label>Berat:  </label></td>
+          <td><label className="label">Berat:  </label></td>
           <td><input type="text" name="weight" value={inputBuah.weight} onChange={handleEditChange}></input></td>
         </tr>
       </table>

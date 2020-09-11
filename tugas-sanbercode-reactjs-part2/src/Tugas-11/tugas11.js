@@ -43,14 +43,14 @@ class Tugas11 extends Component{
     return(
       <>
         { this.state.show && (
-          <>
+          <div style={{width: "70%", margin: "0 auto"}}>
             <h1 className='left'>
               sekarang jam : {this.state.date.toLocaleTimeString()}
             </h1>
             <h1 className='right'>
               hitung mundur: {this.state.time}
             </h1>
-          </>
+          </div>
         )}
       </>
     )

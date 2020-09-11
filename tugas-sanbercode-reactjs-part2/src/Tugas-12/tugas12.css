@@ -27,6 +27,6 @@ h1 {
 .form_edit{
   display: block;
 }
-label {
+.label {
   margin-right: 6px;
 }

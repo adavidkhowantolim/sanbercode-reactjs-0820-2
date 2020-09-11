@@ -42,7 +42,7 @@ class Judul extends React.Component {
 class Tugas10 extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{width: "70%", margin: "0 auto"}}>
         <h1>Tabel Harga Buah</h1>
         <table className="table">
           <tr>

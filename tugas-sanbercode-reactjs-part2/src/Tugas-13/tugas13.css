@@ -2,11 +2,6 @@ h1 {
   text-align: center;
 }
 
-div {
-  width: 70vw;
-  margin: 0 auto;
-}
-
 .table{
   border-collapse: collapse;
   border: 2px solid black;
